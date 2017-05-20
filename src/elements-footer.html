@@ -1,0 +1,73 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="elements-footer">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+      footer {
+        margin-top: 40px;
+        padding: 12px;
+        font-size: 12px;
+        background: var(--app-primary-color);
+        color: #fff;
+      }
+      .footer-list {
+        align-items: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-flow: row wrap;
+        padding: 8px;
+      }
+
+      .footer-links {
+        margin-left: 32px;
+      }
+
+      .footer-credits {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex: 1;
+        justify-content: flex-end;
+      }
+
+      a {
+        color: white;
+      }
+
+      @media screen and (max-width: 884px) {
+        .footer-list {
+          flex-direction: column;
+        }
+      }
+    </style>
+
+    <footer>
+      <div class="footer-list">
+        <div class="footer-logo">
+          <a href="https://vaadin.com">
+            <img src="https://i.stack.imgur.com/qk1SV.png" alt="Vaadin" style="height:40px;width:40px;">
+          </a>
+        </div>
+        <div class="footer-links">
+          <a href="https://vaadin.com/elements" style="font-size:16px;">Vaadin Elements</a>
+        </div>
+        <div class="footer-credits">
+          <p>Created in Vaadin by <a href="https://suoheikki.com">Sami Suo-Heikki</a></p>
+        </div>
+      </div>
+    </footer>
+  </template>
+
+  <script>
+    class ElementsFooter extends Polymer.Element {
+      static get is() { return 'elements-footer'; }
+    }
+
+    window.customElements.define(ElementsFooter.is, ElementsFooter);
+  </script>
+</dom-module>

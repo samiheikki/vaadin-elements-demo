@@ -1,0 +1,74 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="elements-home">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+      .header {
+        height: 550px;
+        margin-bottom: 40px;
+        margin-top: -50px;
+        background-color: var(--app-primary-color);
+      }
+
+      .header-section {
+        text-align: center;
+        padding-top: 160px;
+      }
+
+      .header-start {
+        text-align: center;
+        margin: 60px 0;
+      }
+
+      h1 {
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 40px;
+        margin: 15px 10px 15px 10px;
+        color: #FFF;
+      }
+
+      h2 {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 28px;
+        margin: 15px 10px 25px 10px;
+        color: #FFF;
+      }
+
+      paper-button {
+        color: var(--app-primary-color) !important;
+        background-color: #FFF;
+        height: 40px;
+      }
+    </style>
+
+    <div class="header">
+      <div class="header-section">
+        <div class="header-headline">
+          <h1>Vaadin Elements</h1>
+          <h2>Components for building awesome web apps. Mobile and desktop.</h2>
+        </div>
+        <div class="header-start">
+          <a href="guides" tabindex="-1" class="button-a">
+            <paper-button raised>Get Started</paper-button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    class ElementsHome extends Polymer.Element {
+      static get is() { return 'elements-home'; }
+    }
+
+    window.customElements.define(ElementsHome.is, ElementsHome);
+  </script>
+</dom-module>

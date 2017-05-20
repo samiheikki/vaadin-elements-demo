@@ -1,0 +1,86 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="elements-guides">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+      .header {
+        height: 150px;
+        margin-bottom: 40px;
+        margin-top: -50px;
+        background-color: var(--app-primary-color);
+      }
+      .header h1 {
+        font-size: 30px;
+        font-weight: 300;
+        margin: 0;
+        padding: 50px;
+        color: #FFF;
+        margin-top: 50px;
+      }
+      .guide-list {
+        margin: 50px;
+      }
+      a {
+        color: var(--app-primary-color);
+        display: block;
+        padding: 20px 0 20px 0;
+      }
+      .a-wrapper {
+        padding-left: 20px;
+      }
+      .a-wrapper:hover {
+        background: rgba(0,0,0,.04);
+      }
+    </style>
+
+    <div class="header">
+      <h1>Guides</h1>
+    </div>
+
+    <div class="guide-list">
+      <template is="dom-repeat" items="{{guides}}">
+        <div class="a-wrapper">
+          <a href="{{item.url}}">{{item.name}}</a>
+        </div>
+      </template>
+    </div>
+
+    
+  </template>
+
+  <script>
+    class ElementsGuides extends Polymer.Element {
+      static get is() { return 'elements-guides'; }
+
+      static get properties() {
+        return {
+          guides: {
+            type: Array,
+            value: () => {
+              return [
+                {
+                  name: 'Getting Started',
+                  url: 'https://vaadin.com/docs/-/part/elements/elements-getting-started.html'
+                },
+                {
+                  name: 'ES6 with Vaadin Elements',
+                  url: 'https://vaadin.com/blog/-/blogs/learn-es6-today-with-vaadin-elements-part-1-promises'
+                },
+                {
+                  name: 'Using Vaadin Elements with Vaadin Framework',
+                  url: 'https://vaadin.com/blog/-/blogs/using-vaadin-elements-with-vaadin-framework'
+                }
+              ];
+            }
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ElementsGuides.is, ElementsGuides);
+  </script>
+</dom-module>

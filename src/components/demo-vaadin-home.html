@@ -1,0 +1,57 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-vaadin-home">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+      .components-list {
+        margin: 50px;
+      }
+      a {
+        color: var(--app-primary-color);
+        display: block;
+        padding: 20px 0 20px 0;
+      }
+      .a-wrapper {
+        padding-left: 20px;
+      }
+      .a-wrapper:hover {
+        background: rgba(0,0,0,.04);
+      }
+    </style>
+    <div class="components-list">
+      <div class="a-wrapper">
+        <a href="/components/grid">Grid</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/combo-box">Combo Box</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/icons">Icons</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/upload">Upload</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/date-picker">Date Picker</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/split-layout">Split Layout</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/context-menu">Context Menu</a>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    class VaadinHome extends Polymer.Element {
+      static get is() { return 'demo-vaadin-home'; }
+    }
+
+    window.customElements.define(VaadinHome.is, VaadinHome);
+  </script>
+</dom-module>

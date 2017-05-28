@@ -6,6 +6,10 @@
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+
+
+<link rel="lazy-import" href="components/demo-vaadin-home.html">
 
 <dom-module id="elements-components">
   <template>
@@ -27,49 +31,18 @@
         color: #FFF;
         margin-top: 50px;
       }
-      .components-list {
-        margin: 50px;
-      }
-      a {
-        color: var(--app-primary-color);
-        display: block;
-        padding: 20px 0 20px 0;
-      }
-      .a-wrapper {
-        padding-left: 20px;
-      }
-      .a-wrapper:hover {
-        background: rgba(0,0,0,.04);
-      }
     </style>
 
     <div class="header">
-      <h1>Components</h1>
+      <h1>[[title]]</h1>
     </div>
 
-    <div class="components-list">
-      <div class="a-wrapper">
-        <a href="/components/grid">Grid</a>
-      </div>
-      <div class="a-wrapper">
-        <a href="/components/combo-box">Combo Box</a>
-      </div>
-      <div class="a-wrapper">
-        <a href="/components/icons">Icons</a>
-      </div>
-      <div class="a-wrapper">
-        <a href="/components/upload">Upload</a>
-      </div>
-      <div class="a-wrapper">
-        <a href="/components/date-picker">Date Picker</a>
-      </div>
-      <div class="a-wrapper">
-        <a href="/components/split-layout">Split Layout</a>
-      </div>
-      <div class="a-wrapper">
-        <a href="/components/context-menu">Context Menu</a>
-      </div>
-    </div>
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="name"
+        role="main">
+      <demo-vaadin-home name="home"></demo-vaadin-home>
+    </iron-pages>
 
     
   </template>
@@ -80,20 +53,43 @@
 
       static get properties() {
         return {
-          component: {
+          page: {
             type: String,
-            reflectToAttribute: true,
+            value: 'home'
+          },
+          subroute: {
+            type: Object,
             observer: '_componentChanged',
+          },
+          title: {
+            type: String,
+            computed: '_getTitle(subroute)',
+            value: 'Components'
           }
         };
       }
 
-      _componentChanged(component) {
-        if (component === undefined) {
-          return;
+      _componentChanged(subroute) {
+        if (subroute.path === '') {
+          this.page = 'home';
+        } else {
+          this.page = subroute.path.replace('/', '');
         }
 
-        console.log(component);
+        const resolvedPageUrl = this.resolveUrl('components/demo-vaadin-' + this.page + '.html');
+
+        Polymer.importHref(
+            resolvedPageUrl,
+            null,
+            null,
+            true);
+      }
+
+      _getTitle(subroute) {
+        if (subroute.path === '') {
+          return 'Components';
+        }
+        return subroute.path.replace('/', '');
       }
     }
 

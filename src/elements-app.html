@@ -134,10 +134,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
-    <app-route
+    <!--<app-route
       route="{{subroute}}"
       pattern="/:component"
-      data="{{subrouteData}}"></app-route>
+      data="{{subrouteData}}"></app-route>-->
 
     <app-header-layout>
 
@@ -177,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         role="main">
       <elements-home name="home"></elements-home>
       <elements-guides name="guides"></elements-guides>
-      <elements-components name="components" component="[[subrouteData.component]]"></elements-components>
+      <elements-components name="components" subroute="[[subroute]]"></elements-components>
       <elements-404 name="404"></elements-404>
     </iron-pages>
     <elements-footer></elements-footer>

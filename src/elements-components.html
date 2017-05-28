@@ -10,6 +10,13 @@
 
 
 <link rel="lazy-import" href="components/demo-vaadin-home.html">
+<link rel="lazy-import" href="components/demo-vaadin-grid.html">
+<link rel="lazy-import" href="components/demo-vaadin-combo-box.html">
+<link rel="lazy-import" href="components/demo-vaadin-icons.html">
+<link rel="lazy-import" href="components/demo-vaadin-upload.html">
+<link rel="lazy-import" href="components/demo-vaadin-date-picker.html">
+<link rel="lazy-import" href="components/demo-vaadin-split-layout.html">
+<link rel="lazy-import" href="components/demo-vaadin-context-menu.html">
 
 <dom-module id="elements-components">
   <template>
@@ -40,8 +47,16 @@
     <iron-pages
         selected="[[page]]"
         attr-for-selected="name"
-        role="main">
+        role="main"
+        style="padding:8px;">
       <demo-vaadin-home name="home"></demo-vaadin-home>
+      <demo-vaadin-grid name="grid"></demo-vaadin-grid>
+      <demo-vaadin-combo-box name="combo-box"></demo-vaadin-combo-box>
+      <demo-vaadin-icons name="icons"></demo-vaadin-icons>
+      <demo-vaadin-upload name="upload"></demo-vaadin-upload>
+      <demo-vaadin-date-picker name="date-picker"></demo-vaadin-date-picker>
+      <demo-vaadin-split-layout name="split-layout"></demo-vaadin-split-layout>
+      <demo-vaadin-context-menu name="context-menu"></demo-vaadin-context-menu>
     </iron-pages>
 
     

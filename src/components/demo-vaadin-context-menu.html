@@ -1,0 +1,22 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/vaadin-context-menu/vaadin-context-menu.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-vaadin-context-menu">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+    <vaadin-context-menu></vaadin-context-menu>
+  </template>
+
+  <script>
+    class DemoVaadinContextMenu extends Polymer.Element {
+      static get is() { return 'demo-vaadin-context-menu'; }
+    }
+
+    window.customElements.define(DemoVaadinContextMenu.is, DemoVaadinContextMenu);
+  </script>
+</dom-module>

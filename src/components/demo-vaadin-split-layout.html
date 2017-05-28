@@ -1,0 +1,22 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/vaadin-split-layout/vaadin-split-layout.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-vaadin-split-layout">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+    <vaadin-split-layout></vaadin-split-layout>
+  </template>
+
+  <script>
+    class DemoveVaadinSplitLayout extends Polymer.Element {
+      static get is() { return 'demo-vaadin-split-layout'; }
+    }
+
+    window.customElements.define(DemoveVaadinSplitLayout.is, DemoveVaadinSplitLayout);
+  </script>
+</dom-module>

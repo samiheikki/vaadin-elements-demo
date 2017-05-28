@@ -1,0 +1,22 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/vaadin-upload/vaadin-upload.html">
+<link rel="import" href="../shared-styles.html">
+
+<dom-module id="demo-vaadin-upload">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+    </style>
+    <vaadin-upload></vaadin-upload>
+  </template>
+
+  <script>
+    class DemoVaadinUpload extends Polymer.Element {
+      static get is() { return 'demo-vaadin-upload'; }
+    }
+
+    window.customElements.define(DemoVaadinUpload.is, DemoVaadinUpload);
+  </script>
+</dom-module>

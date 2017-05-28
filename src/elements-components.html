@@ -13,31 +13,63 @@
       :host {
         display: block;
       }
+      .header {
+        height: 150px;
+        margin-bottom: 40px;
+        margin-top: -50px;
+        background-color: var(--app-primary-color);
+      }
+      .header h1 {
+        font-size: 30px;
+        font-weight: 300;
+        margin: 0;
+        padding: 50px;
+        color: #FFF;
+        margin-top: 50px;
+      }
+      .components-list {
+        margin: 50px;
+      }
+      a {
+        color: var(--app-primary-color);
+        display: block;
+        padding: 20px 0 20px 0;
+      }
+      .a-wrapper {
+        padding-left: 20px;
+      }
+      .a-wrapper:hover {
+        background: rgba(0,0,0,.04);
+      }
     </style>
 
-    <!--<app-drawer-layout>
+    <div class="header">
+      <h1>Components</h1>
+    </div>
 
-    <app-drawer opened>
-      <app-toolbar>Getting Started</app-toolbar>
-    </app-drawer>
-
-    <app-header-layout>
-
-      <app-header reveals effects="waterfall">
-        <app-toolbar>
-          <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-          <div main-title>Title</div>
-        </app-toolbar>
-      </app-header>
-
-      <div>Content goes here</div>
-
-    </app-header-layout>
-
-  </app-drawer-layout>-->
-
-
-    <div>content here</div>
+    <div class="components-list">
+      <div class="a-wrapper">
+        <a href="/components/grid">Grid</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/combo-box">Combo Box</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/icons">Icons</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/upload">Upload</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/date-picker">Date Picker</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/split-layout">Split Layout</a>
+      </div>
+      <div class="a-wrapper">
+        <a href="/components/context-menu">Context Menu</a>
+      </div>
+    </div>
 
     
   </template>
@@ -45,6 +77,24 @@
   <script>
     class ElementsComponents extends Polymer.Element {
       static get is() { return 'elements-components'; }
+
+      static get properties() {
+        return {
+          component: {
+            type: String,
+            reflectToAttribute: true,
+            observer: '_componentChanged',
+          }
+        };
+      }
+
+      _componentChanged(component) {
+        if (component === undefined) {
+          return;
+        }
+
+        console.log(component);
+      }
     }
 
     window.customElements.define(ElementsComponents.is, ElementsComponents);

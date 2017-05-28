@@ -24,6 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="my-icons.html">
 <link rel="import" href="elements-footer.html">
+<link rel="import" href="elements-components-drawer.html">
 
 <link rel="lazy-import" href="elements-home.html">
 <link rel="lazy-import" href="elements-guides.html">
@@ -119,12 +120,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           background-color: #00b4f0;
         }
       }
-      .drawer-content {
-        margin-top: 48px;
-        height: calc(100% - 48px);
-        overflow: auto;
-        background: #eee;
-      }
       .component-title {
         color: white;
         position: absolute;
@@ -139,38 +134,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
+    <app-route
+      route="{{subroute}}"
+      pattern="/:component"
+      data="{{subrouteData}}"></app-route>
+
     <app-header-layout>
 
     <app-drawer-layout id="drawerLayout">
 
       <app-drawer slot="drawer">
         <p class="component-title">Components</p>
-        <div class="drawer-content">
-          <h3>asd</h3>
-          <h3>asd</h3>
-          <h3>asd</h3> 
-          <paper-icon-item>
-            <iron-icon icon="inbox" slot="item-icon"></iron-icon> <span>Inbox</span>
-          </paper-icon-item>
-          <paper-icon-item>
-            <iron-icon icon="query-builder" slot="item-icon"></iron-icon> <span>Snoozed</span>
-          </paper-icon-item>
-          <paper-icon-item>
-            <iron-icon icon="done" slot="item-icon"></iron-icon> <span>Done</span>
-          </paper-icon-item>
-          <paper-icon-item>
-            <iron-icon icon="drafts" slot="item-icon"></iron-icon> <span>Drafts</span>
-          </paper-icon-item>
-          <paper-icon-item>
-            <iron-icon icon="send" slot="item-icon"></iron-icon> <span>Sent</span>
-          </paper-icon-item>
-          <paper-icon-item>
-            <iron-icon icon="delete" slot="item-icon"></iron-icon> <span>Trash</span>
-          </paper-icon-item>
-          <paper-icon-item>
-            <iron-icon icon="report" slot="item-icon"></iron-icon> <span>Spam</span>
-          </paper-icon-item>
-        </div>
+        <elements-components-drawer></elements-components-drawer>
       </app-drawer>
 
       <!--<app-header slot="header" condenses reveals effects="waterfall">-->
@@ -202,7 +177,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         role="main">
       <elements-home name="home"></elements-home>
       <elements-guides name="guides"></elements-guides>
-      <elements-components name="components"></elements-components>
+      <elements-components name="components" component="[[subrouteData.component]]"></elements-components>
       <elements-404 name="404"></elements-404>
     </iron-pages>
     <elements-footer></elements-footer>
@@ -275,10 +250,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.showNavShadow = (page !== 'home' && page !== 'guides');
 
         const drawerLayout = this.$.drawerLayout;
-        console.log(page);
         if (page === 'components') {
           drawerLayout.forceNarrow = false;
-          if (drawerLayout.narrow) {
+          if (window.innerWidth > 640) {
             drawerLayout.drawer.opened = true;
           }
         } else {

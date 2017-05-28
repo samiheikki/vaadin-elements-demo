@@ -1,0 +1,68 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="elements-components-drawer">
+  <template>
+    <style>
+      :host {
+        display: block;
+        margin-top: 48px;
+        height: calc(100% - 48px);
+        overflow: auto;
+        background: #eee;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    </style>
+
+    <div class="drawer-content">
+          <a href="/components/grid">
+            <paper-icon-item>
+              <iron-icon icon="list" slot="item-icon"></iron-icon> <span>Grid</span>
+            </paper-icon-item>
+          </a>
+          <a href="/components/combo-box">
+            <paper-icon-item>
+              <iron-icon icon="receipt" slot="item-icon"></iron-icon> <span>Combo Box</span>
+            </paper-icon-item>
+          </a>
+          <a href="/components/icons">
+            <paper-icon-item>
+              <iron-icon icon="check-circle" slot="item-icon"></iron-icon> <span>Icons</span>
+            </paper-icon-item>
+          </a>
+          <a href="/components/upload">
+            <paper-icon-item>
+              <iron-icon icon="file-upload" slot="item-icon"></iron-icon> <span>Upload</span>
+            </paper-icon-item>
+          </a>
+          <a href=/components/date-picker>
+            <paper-icon-item>
+              <iron-icon icon="date-range" slot="item-icon"></iron-icon> <span>Date Picker</span>
+            </paper-icon-item>
+          </a>
+          <a href="/components/split-layout">
+            <paper-icon-item>
+              <iron-icon icon="view-week" slot="item-icon"></iron-icon> <span>Split Layout</span>
+            </paper-icon-item>
+          </a>
+          <a href="/components/context-menu">
+            <paper-icon-item>
+              <iron-icon icon="tab-unselected" slot="item-icon"></iron-icon> <span>Context Menu</span>
+            </paper-icon-item>
+          </a>
+        </div>
+  </template>
+
+  <script>
+    class ElementsDrawer extends Polymer.Element {
+      static get is() { return 'elements-components-drawer'; }
+    }
+
+    window.customElements.define(ElementsDrawer.is, ElementsDrawer);
+  </script>
+</dom-module>

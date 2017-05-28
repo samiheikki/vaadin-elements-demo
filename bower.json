@@ -16,7 +16,8 @@
     "polymer": "Polymer/polymer#^2.0.0-rc.3",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.7",
     "paper-tabs": "^2.0.0",
-    "paper-button": "^2.0.0"
+    "paper-button": "^2.0.0",
+    "vaadin-core-elements": "master"
   },
   "resolutions": {
     "polymer": "^2.0.0-rc.3"

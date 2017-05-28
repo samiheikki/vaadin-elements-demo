@@ -27,9 +27,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="lazy-import" href="elements-home.html">
 <link rel="lazy-import" href="elements-guides.html">
-<link rel="lazy-import" href="my-view2.html">
-<link rel="lazy-import" href="my-view3.html">
-<link rel="lazy-import" href="my-view404.html">
+<link rel="lazy-import" href="elements-components.html">
+<link rel="lazy-import" href="elements-404.html">
 
 <dom-module id="elements-app">
   <template>
@@ -91,6 +90,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .header-wrapper {
         display: flex;
         justify-content: space-between;
+        background-color: var(--app-primary-color);
       }
 
       paper-button {
@@ -99,7 +99,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .button-a {
         font-size: 14px;
-        font-weight: 100;
       }
 
       a paper-button,
@@ -111,6 +110,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host([show-nav-shadow]) app-header {
         box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
       }
+
+      app-drawer-layout {
+        --app-drawer-layout-content-transition: margin 0.2s;
+      }
+      app-drawer {
+        --app-drawer-content-container: {
+          background-color: #00b4f0;
+        }
+      }
+      .drawer-content {
+        margin-top: 48px;
+        height: calc(100% - 48px);
+        overflow: auto;
+        background: #eee;
+      }
+      .component-title {
+        color: white;
+        position: absolute;
+        margin: 12px;
+      }
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -119,40 +138,80 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         pattern="[[rootPattern]]:page"
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
-    <app-header slot="header" condenses reveals effects="waterfall">
+
+    <app-header-layout>
+
+    <app-drawer-layout id="drawerLayout">
+
+      <app-drawer slot="drawer">
+        <p class="component-title">Components</p>
+        <div class="drawer-content">
+          <h3>asd</h3>
+          <h3>asd</h3>
+          <h3>asd</h3> 
+          <paper-icon-item>
+            <iron-icon icon="inbox" slot="item-icon"></iron-icon> <span>Inbox</span>
+          </paper-icon-item>
+          <paper-icon-item>
+            <iron-icon icon="query-builder" slot="item-icon"></iron-icon> <span>Snoozed</span>
+          </paper-icon-item>
+          <paper-icon-item>
+            <iron-icon icon="done" slot="item-icon"></iron-icon> <span>Done</span>
+          </paper-icon-item>
+          <paper-icon-item>
+            <iron-icon icon="drafts" slot="item-icon"></iron-icon> <span>Drafts</span>
+          </paper-icon-item>
+          <paper-icon-item>
+            <iron-icon icon="send" slot="item-icon"></iron-icon> <span>Sent</span>
+          </paper-icon-item>
+          <paper-icon-item>
+            <iron-icon icon="delete" slot="item-icon"></iron-icon> <span>Trash</span>
+          </paper-icon-item>
+          <paper-icon-item>
+            <iron-icon icon="report" slot="item-icon"></iron-icon> <span>Spam</span>
+          </paper-icon-item>
+        </div>
+      </app-drawer>
+
+      <!--<app-header slot="header" condenses reveals effects="waterfall">-->
       <div class="header-wrapper">
         <div class="navigation-wrapper">
           <paper-tabs selected="[[page]]" attr-for-selected="name">
-            <paper-tab link name="elements-home">
-              <a href="elements-home" tabindex="-1">Vaadin Elements</a>
+            <paper-tab link name="home">
+              <a href="home" tabindex="-1">Vaadin Elements</a>
             </paper-tab>
-            <paper-tab link name="my-view2">
-              <a href="my-view2" tabindex="-1">Components</a>
+            <paper-tab link name="components">
+              <a href="components" tabindex="-1">Components</a>
             </paper-tab>
-            <paper-tab link name="elements-guides">
-              <a href="elements-guides" tabindex="-1">Guides</a>
+            <paper-tab link name="guides">
+              <a href="guides" tabindex="-1">Guides</a>
             </paper-tab>
           </paper-tabs>
         </div>
-        <a href="https://www.polymer-project.org/" tabindex="-1" class="button-a">
+        <a href="https://github.com/vaadin/vaadin-core-elements" tabindex="-1" class="button-a">
           <paper-button>GitHub</paper-button>
         </a>
       </div>
       
-    </app-header>
+    <!--</app-header>-->
 
     <iron-pages
         selected="[[page]]"
         attr-for-selected="name"
         fallback-selection="view404"
         role="main">
-      <elements-home name="elements-home"></elements-home>
-      <elements-guides name="elements-guides"></elements-guides>
-      <my-view2 name="my-view2"></my-view2>
-      <my-view3 name="my-view3"></my-view3>
-      <my-view404 name="my-view404"></my-view404>
+      <elements-home name="home"></elements-home>
+      <elements-guides name="guides"></elements-guides>
+      <elements-components name="components"></elements-components>
+      <elements-404 name="404"></elements-404>
     </iron-pages>
     <elements-footer></elements-footer>
+      
+    </app-drawer-layout>
+
+  </app-header-layout>
+
+    
   </template>
 
   <script>
@@ -201,19 +260,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         // If no page was found in the route data, page will be an empty string.
         // Deault to 'view1' in that case.
-        this.page = page || 'elements-home';
+        this.page = page || 'components';
       }
 
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl(page + '.html');
+        const resolvedPageUrl = this.resolveUrl('elements-' + page + '.html');
         Polymer.importHref(
             resolvedPageUrl,
             null,
             this._showPage404.bind(this),
             true);
         
-        this.showNavShadow = (page !== 'elements-home' && page !== 'elements-guides');
+        this.showNavShadow = (page !== 'home' && page !== 'guides');
+
+        const drawerLayout = this.$.drawerLayout;
+        console.log(page);
+        if (page === 'components') {
+          drawerLayout.forceNarrow = false;
+          if (drawerLayout.narrow) {
+            drawerLayout.drawer.opened = true;
+          }
+        } else {
+          drawerLayout.forceNarrow = true;
+          drawerLayout.drawer.opened = false;
+        }
       }
 
       _showPage404() {
